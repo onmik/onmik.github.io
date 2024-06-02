@@ -681,23 +681,27 @@ input, select, textarea {
 				width: 100%;
 			}
 
-		.image.left, image.gal {
+		.image.left {
 			float: left;
 			padding: 0 1.5em 1em 0;
 			top: 0.25em;
 		}
 
+
+
+		.image.gal {
+			
+			padding: 1em 1em 1em 1em;
+			top: 0.25em;
+		}
+
+		
 		.image.right {
 			float: right;
 			padding: 0 0 1em 1.5em;
 			top: 0.25em;
 		}
 
-		.image.gal {
-			float: left;
-			padding: 0 0 1em 1.5em;
-			top: 0.25em;
-		}
 
 		.image.fit {
 			display: block;
