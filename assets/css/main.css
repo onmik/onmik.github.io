@@ -258,6 +258,31 @@ input, select, textarea {
 		top: -0.5rem;
 	}
 
+
+
+	.pred {
+	    font-size: 0.8rem;
+	    position: absolute;
+	    top: 5px;
+	    left: 100px;
+	}
+
+
+	
+	.dalsia {
+	    font-size: 0.8rem;
+	    position: absolute;
+	    top: 5px;
+	    right: 100px;
+	} 
+
+	.center {
+	    top: 5px;
+	    position: absolute;
+	    left: 45%;
+	    font-size: 0.8rem;
+	}
+	
 	blockquote {
 		border-left: solid 4px #ffffff;
 		font-style: italic;
