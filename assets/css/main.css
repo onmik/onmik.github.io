@@ -264,7 +264,7 @@ input, select, textarea {
 	    font-size: 0.8rem;
 	    position: absolute;
 	    top: 5px;
-	    left: 100px;
+	    left: 50px;
 	}
 
 
@@ -273,7 +273,7 @@ input, select, textarea {
 	    font-size: 0.8rem;
 	    position: absolute;
 	    top: 5px;
-	    right: 100px;
+	    right: 50px;
 	} 
 
 	.center {
