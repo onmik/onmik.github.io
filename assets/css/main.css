@@ -273,7 +273,7 @@ input, select, textarea {
 	    font-size: 0.8rem;
 	    position: absolute;
 	    top: 5px;
-	    right: 50px;
+	    right: 60px;
 	} 
 
 	.center {
@@ -716,7 +716,7 @@ input, select, textarea {
 
 		.image.gal {
 			
-			padding: 1em 1em 1em 1em;
+			padding: 0.5em 0.5em 0.5em 0.5em;
 			
 		}
 
