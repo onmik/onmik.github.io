@@ -700,7 +700,7 @@ input, select, textarea {
 		}
 
 		.image.gal {
-		    max-width: 32.9%;
+		    max-width: 33%;
 		}
 			.image.left img, .image.right img, .image.gal img{
 				width: 100%;
@@ -753,6 +753,9 @@ input, select, textarea {
 			.image.main {
 				margin: 2rem 0;
 			}
+			.image.gal {
+			    max-width: 49%;
+			}
 
 		}
 
@@ -761,6 +764,10 @@ input, select, textarea {
 			.image.main {
 				margin: 1.5rem 0;
 			}
+			.image.gal {
+			    max-width: 49%;
+			}
+						
 
 		}
 
