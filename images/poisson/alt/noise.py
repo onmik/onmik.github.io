@@ -26,7 +26,7 @@ poisson_1d(pixel_small * 25)
 #-----------------photon noise--------------------------
 def generate_img(resolution):
     x, y = np.meshgrid(np.linspace(0, 1, resolution), np.linspace(0, 1, resolution))
-    return ((0.5 + x + x**10 + y/4 + y**8) * np.exp(-x**1.8 - y**1.5) * 200).astype(int)
+    return ((0.5 + x + x**10 + y/4 + y**8) * np.exp(-x**1.8 - y**1.5) * 200000).astype(int)
     
 def resample(img, binning):
     big = img.reshape(img.shape[0]//binning, binning, img.shape[1]//binning, binning)
