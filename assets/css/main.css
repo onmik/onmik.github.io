@@ -748,15 +748,33 @@ input, select, textarea {
 				width: 100%;
 			}
 
+			@media screen and (max-width: 1680px) {
+			    
+			    img {
+				width: 110px;
+			    }
+		    
+			}
+
+		@media screen and (max-width: 1080px) {
+		    
+		    img {
+			width: 95px;
+		    }
+
+		}
+
 		@media screen and (max-width: 736px) {
 
 			.image.main {
 				margin: 2rem 0;
 			}
 			.image.gal {
-			    max-width: 49%;
+			    width: 49%;
 			}
-
+			img {
+			    width: 75px;
+			}
 		}
 
 		@media screen and (max-width: 480px) {
@@ -767,8 +785,9 @@ input, select, textarea {
 			.image.gal {
 			    max-width: 49%;
 			}
-						
-
+			img {
+			    width: 70px;
+			}
 		}
 
 /* List */
