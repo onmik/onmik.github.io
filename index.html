@@ -369,11 +369,53 @@
 
 		<!-- Blog -->
 							<article id="blog">
-							<h2 class="major">Blog</h2> 
+							  <h2 class="major">Blog</h2>
+
+
+							  <h3>Ako na astrofotografiu s Linuxom</h3> 
+							  <div class="mybox"> 
+							    <div> 
+							      Dávno sú preč časy, keď človek na samotnú inštaláciu systému s linuxovým jadrom potreboval volný víkend a dávku nadšenia, alebo aspoň pevných nervov.  
+							      <span id="span2">...</span> 
+							      <span class="mybox1" id="mybox2id"> 
+								<p> I v oblasti astronómie a astrofotografie medzičasom, vďaka vývojárom, ochotným zdielať plody ich práce s užívatelskou komunitou, vzniklo niekolko projektov, ktoré, aspoň podla mojej skúsenosti, poskytujú plnohodnotné softwarové vybavenie v linuxových systémoch. Najprv ale pár slov o tom, prečo vlastne pre astrofotgrafiu je otázka softwarovej výbavy zásadná. S planetárnou fotografiou skúsenosti nemám, preto v tomto blogu pod pojmom astrofotografia mám na mysli fotografiu objektov hlbového vesmíru (tzv. <a href="https://en.wikipedia.org/wiki/Deep-sky_object" target="_blank">DSO</a>)</p><p>
+								  Na rozdiel od bežnej fotografie, kedy je počítač potrebný až v procese spracovania fotografií, fotograf DSO je na počítač napojený prakticky neustále. Či už kvôli ovládaniu hlavnej a pointačnej kamery (pointácia su mikrokorekcie montáže na základe presnej polohy pointačnej hviezdy, ktorá je snímaná samostanou kamerou a koriguje rôzne nepresnosti montáže), ale aj celého astrofotografického systému (montáž, pointačná sústava, filtrový karusel, fokusér, ...). Aj keď väčšina vybavenia je funkčná i autonómne, s praktického hladiska je výhodne mať celý systém synchronizovaný a ovládaný cez jeden počítač. K širšiemu rozšíreniu Linuxu medzi astrofotografmi pravdepodobne zásadným spôsobom prispel minipočítač Raspberry Pi, s ktorého sa vďaka malým rozmerom stala velmi šikovná pomôcka (napríklad problém "cable managementu"), schopná nahradiť notebook. </p><p> Počas fotoakcie, zameranej na DSO technikou dlhých expozícií, je potrebné mať softwarovo podchytené tri záležitosti:
+								  <ul>
+								    <li>virtuálne planetárium, slúžiace k navigácii fotosystému (Kstars)</li>
+								    <li>ovládače techniky (INDI)</li>
+								    <li>užívatelské prostredie (Ekos)</li>
+								  </ul>
+
+								  V linuxovom prostredí, a je jedno či sa použije klasický laptop alebo nejaké zariadenie s ARM architektúrou (napr. spomenuté Raspberry), tieto nároky napĺňa trojkombo <a href="https://kstars.kde.org/indi/" target="_blank">Kstars/INDI/Ekos</a>. Planetárium Kstars býva súčasťou distribučných balíčkov bežných linuxových distribúcií a pri inštalácii je obvykle spolu s Kstars naištalované i prostredie Ekos, slúžiace na kompletné nastavenie a ovládanie astrofotografického systému. Ďalej je pre komunikáciu systému KStars s jednotlivými astrofotografickými zariadeniami doinštalovať <a href="https://github.com/indilib/indi" target="_blank">INDI server a ovládače</a>. Táto základná inštalácia obsahuje obmedzené množstvo ovládačov a pravdepodobne bude treba doinštalovať i <a href="https://github.com/indilib/indi-3rdparty" target="_blank">INDI 3rd party drivers</a>. Osobne doporučujem k inštalácii použiť inštalačný <a href="https://gitea.nouspiro.space/nou/astro-soft-build" target="_blank">skrip</a>, napísaný užívatelom nou, ktorý kompletne nainštaluje KStars a INDI, vrátane všetkých závislosti. Takto potom vyzerá užívatelské prostredie systému KStars/Ekos. V hornej lište programu Ekos je možné jednoducho prepínať medzi jednotlivými zariadeniami a všetko je krásne prepojené a synchronizové. V prípade, že človek fotí s pointáciou, mne sa osvedčil používať interný giuder v Ekose, ale pokial je niekto zvyknutý na program PHD2 a nechce sa ho vzdať, je možné prepojiť ekos i s PHD2, ktorý si potom pointáciu riadi samostatne. </br> </br>
+								  <span class="image fit"> <a href="images/Ekos.png" target="_blank"><img alt="ekos" src="images/Ekos.png"></a></span>
+
+
+								  Tolko stručne k samotnému foteniu. Ďalším, neoddelitelným, krokom je následne spracovanie signálu, získaného v priebehu fotenia. Astrofotografia je obvykle založená na nasnímaní určitého počtu kratších snímkov (napríklad 10 minútové subsnímky pre 12 hodinovú celkovú expozíciu), ktoré sa následne v počítači skalibrujú (odčítanie rôznych artefaktov a niektorých zložiek šumu), zregistrujú (presné napasovanie na referenčný snímok), zložia do jednej fotky a tá sa ďalej spracováva už za pomocí obvyklejších fotografických postupov, i keď i tie u astrofotografie majú určité špecifiká. Všetky tieto kroky a i mnoho ďalšch funkcií, v Linuxe umožňuje program <a href="https://siril.org/" target="_blank">Siril</a>. Je to aktívne vyvíjajúci sa projekt, a s každou novou aktualizáciu človek dostanie nejaké prekvapenie vo forme nových funkcií a rôznych vychytávok.</br></br>
+								  <span class="image fit"> <a href="images/siril.png" target="_blank"><img alt="ekos" src="images/siril.png"></a></span>
+								  Asi najjednoduchší spôsob inštalácie je pomocou AppImage, alebo Flatpaku (odkaz na stiahntie je priamo na stránkach Sirilu), ale ak je niekto netrpezlivý ako ja a zvedavý na nové vychytávky, nie je zásadný problém ani inštalácia zo zdrojákov, pri prvej inštalácii to bol ale trošku boj s predinštaláciou všetkých potrebných závislostí. Konkrétne postupy práce v Sirilu tu opisovať nebudem  - to by bolo na samosatanú sériu článkov a navyše pomerne podrobné postupy a tutoriály sú na stránke projektu, na ktorú odkazujem vyššie, alebo ešte lepšie, v dokumentácii k software <a href="https://siril.readthedocs.io/en/stable/" target="_blank">siril.readthedocs.io</a>.
+								</p>
+							      </span> 
+							    </div> 
+							    <button id="mybutton2id" 
+								    onclick="changeReadMore_2()"> 
+							      Čítať ďalej 
+							    </button> 
+							  </div> 
+							  </br>
+							  </br>
 							<h3>Na velikosti pixelu stále záleží</h3>
-							  <p>Trend zvyšovania rozlíšenia a zmenšovania pixelov si všímam, odkedy nejakým spôsobom vnímam digitálnu fotografiu. Osobne si myslím, že tento trend prináša viac škody než úžitku, avšak nie všetci fotografi by so mnou súhlasili. Toť nedávno som natrafil na článok, vyvracajúci mýtus (i keď podla mojej domnieky, ktorú sa v tomto blogu pokúsom obhájiť, sa nejedná o mýtus), že so zvyšovaním rozlíšenia senzoru a teda smenšovaním pixelov, na jednotlivé pixely dopadá menej svetla a tým sa znižuje kvalita obrazu. Argumenty v článku pre to, že sa jedná len o mýtus, sú založené na tom, že pri zmenšovaní velkosti pixelu síce dopadá menej fotónov na jednotlivý pixel, ale celkový počet fotónov dopadajúcich na snímač sa nemení a tudíž kvalita obrazu sa nielen že nemení, ale dokoca vďaka väčšiemu rozlíšeniu, zlepšuje.<blockquote> " The argument is usually based around the idea that ‘larger pixels can gather more light’. This is true, if you consider a pixel in isolation. However, a sensor is an array of pixels, and a larger pixel occupies a larger proportion of that sensor. Apart from one factor, which will be discussed later, the size of the pixels does not affect how much light a sensor can collect. If you look at weather forecasts, the amount of rain is measured in millimetres. This is the depth of rainfall collected in the bottom of a straight-sided vessel left in the rain. The area of the vessel does not matter, since the depth will always be the same."</br></br> Celý článok je na linku: <a href="https://amateurphotographer.com/latest/opinion/are-smaller-pixels-worse-sensor-technology-myths-explained/">Are smaller pixels worse? Sensor technology myths explained</a> </blockquote> Aj keď uvedené vety sú pravdivé, toto stanovisko ignoruje ďalší jav, prejavujúci sa hlavne za horších svetelných podmienok a tým je <b>fotónový šum</b>.</p>
-							  <p>
-							    Fotónový šum vychádza so stochastickej povahy svetelného signálu a je to odchylka signálu, spôsobená fluktuáciou v počte dopadaných fotónov okolo očakávaného signálu (očakávaný signál je priemerná hodnota poissonového rozdelenia). To znamená že napríklad pri signále 100 fotónov nám za jednotkový expozičný čas dopadne na snímač raz 100 fotónov, potom 94, potom 102, atď. - rozdielne hodnoty sú dané poissonovým pravdepodobnostným rozdelením. Smerodatná odchylka signálu je v prípade poissonového rozdelenia odmocninou signálu. A vzhladom k tomu, že sa jedná o šum, vychádzajúci z prirodzenej povahy svetelného signálu, žiaden technologický pokrok pri výrobe čipu nám nepomôže a jediný spôsob, ako si sním zmysluplne poradiť, je nazbierať väčšie množstvo fotónov a tým si zlepšiť pomer signálu k jeho odchýlke (šumu). V prípade, identickej optickej sústavy, expozičného času a citlivosti snímača, jedinou premennou ktorá môže zvýšiť počet dopadajúcich fotónov, je práve velkosť pixelu.
+
+
+							
+							  <div class="mybox"> 
+        <div> 
+            Trend zvyšovania rozlíšenia a zmenšovania pixelov si všímam, odkedy nejakým spôsobom vnímam digitálnu fotografiu. Osobne si myslím, že tento trend prináša viac škody než úžitku, avšak nie všetci fotografi by so mnou súhlasili.<span id="span1">...</span> 
+            <span class="mybox1" id="mybox1id"> 
+
+							<p>  Toť nedávno som natrafil na článok, vyvracajúci mýtus (i keď podla mojej domnieky, ktorú sa v tomto blogu pokúsom obhájiť, sa nejedná o mýtus), že so zvyšovaním rozlíšenia senzoru a teda smenšovaním pixelov, na jednotlivé pixely dopadá menej svetla a tým sa znižuje kvalita obrazu. Argumenty v článku pre to, že sa jedná len o mýtus, sú založené na tom, že pri zmenšovaní velkosti pixelu síce dopadá menej fotónov na jednotlivý pixel, ale celkový počet fotónov dopadajúcich na snímač sa nemení a tudíž kvalita obrazu sa nielen že nemení, ale dokoca vďaka väčšiemu rozlíšeniu, zlepšuje. <blockquote> " The argument is usually based around the idea that ‘larger pixels can gather more light’. This is true, if you consider a pixel in isolation. However, a sensor is an array of pixels, and a larger pixel occupies a larger proportion of that sensor. Apart from one factor, which will be discussed later, the size of the pixels does not affect how much light a sensor can collect. If you look at weather forecasts, the amount of rain is measured in millimetres. This is the depth of rainfall collected in the bottom of a straight-sided vessel left in the rain. The area of the vessel does not matter, since the depth will always be the same."</br></br> Celý článok je na linku: <a href="https://amateurphotographer.com/latest/opinion/are-smaller-pixels-worse-sensor-technology-myths-explained/">Are smaller pixels worse? Sensor technology myths explained</a> </blockquote> Aj keď uvedené vety sú pravdivé, toto stanovisko ignoruje ďalší jav, prejavujúci sa hlavne za horších svetelných podmienok a tým je <b>fotónový šum</b>.</p>
+							
+							<p>
+							  Fotónový šum vychádza so stochastickej povahy svetelného signálu a je to odchylka signálu, spôsobená fluktuáciou v počte dopadaných fotónov okolo očakávaného signálu (očakávaný signál je priemerná hodnota poissonového rozdelenia). To znamená že napríklad pri signále 100 fotónov nám za jednotkový expozičný čas dopadne na snímač raz 100 fotónov, potom 94, potom 102, atď. - rozdielne hodnoty sú dané poissonovým pravdepodobnostným rozdelením. Smerodatná odchylka signálu je v prípade poissonového rozdelenia odmocninou signálu. A vzhladom k tomu, že sa jedná o šum, vychádzajúci z prirodzenej povahy svetelného signálu, žiaden technologický pokrok pri výrobe čipu nám nepomôže a jediný spôsob, ako si sním zmysluplne poradiť, je nazbierať väčšie množstvo fotónov a tým si zlepšiť pomer signálu k jeho odchýlke (šumu). V prípade, identickej optickej sústavy, expozičného času a citlivosti snímača, jedinou premennou ktorá môže zvýšiť počet dopadajúcich fotónov, je práve velkosť pixelu.
 							  </p>
 							  <p>
 							    Uvažujme 3 dokonalé snímače so 100 % kvantovou účinnosťou, produkúce nulový šum, hotpixelym či iné artefakty. Snímače majú rovnakú plochu, na ktorú dopadá svetlo s kontantným rozložením intenzity, ale snímače majú rozdielne rozlíšenie (velkosť pixelov): prvý má pixely velikosti 1 x 1 nm, druhý 2 x 2 nm a tretí 5 x 5 nm. V prípade fotónového toku 100 fotónov na 1 nm, bude charakteristika signálu a šumu pre tieto pixely tak ako je to na uvedených grafoch. Z grafov je zrejmé zlepšovanie pomeru signál/šum (tento pomer odpovedá smerodatnej odchýlke) so zväčšovaním pixelu. Kvalita fotografického výstupu nie je daná samotným osvetlením pixelu, ale práve pomerom signál/šum. Nie je to ale obecne platné pravidlo, pretože od určiteho pomeru je zlepšovanie výstupu zanedbatelné - nastavenie prahu pre zlepšovanie je už subjektívna záležitosť každého fotografa.
@@ -407,8 +449,8 @@ Vzhladom k tomu, že svetelný signál (počet fotónov dopadajúcich na plochu)
 
 							  <p>
 							    Záverom, pri hodnotení vplyvu velkosti pixelu a rozlíšenia snímačov na kvalitu výstupu, nestačí brať v úvahu technologický pokrok, kedy sa kvantová účinnosť moderných snímačov blíži dokonalosti, ale stále musíme uvažovať konkrétne podmienky. A v horších svetelných podmienkach majú kamery s relatívne malým rozlíšením stále svoj význam. </p><p> Nutno uviesť, že i tento blog je pomerne zjednodušujúci a zanedbáva ďalšie efekty, ktoré je ďalej nutné hodnotit pri posudzovaní vplyvu rozlíšenia na kvalitu obrazu. A to je napríklad ďalšie zložky šumu (temný prúd, ktorý sa zväčšuje pri dĺžke expozície takže eliminácia fotónoveho šumu predlžovaním expozičného času môže byť problematická), vykreslenie optickej sústavy, ohnisko, iné než svetelné podmienky (napríklad nestabilita atmosféty - seeing),... Možno sa im povenujem v niektorom z ďalších blogov. </p>
-	<p>						    Dole je skript, použitý pre generovanie obrázkov a testovanie úvah. Jadrom skriptu je rutina <a href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.poisson.html">numpy.random.poisson</a>. </p> 
-							  </P>
+	<p>						    Dole je skript, použitý pre generovanie obrázkov a testovanie úvah. Jadrom skriptu je rutina <a href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.poisson.html" target="_blank">numpy.random.poisson</a>. </p> 
+							 </P>
 
 							  <pre> <code class="python">
 import matplotlib.pyplot as plt
@@ -478,6 +520,14 @@ figure(noise_resampled_2, "resampled_2")
 noise_resampled_5 = poisson(noiseless_resampled_5)
 figure(noise_resampled_5, "resampled_5")							    </code></pre>
 
+</span></div>
+	 <button id="mybuttonid" 
+                onclick="changeReadMore()"> 
+            Čítať ďalej 
+        </button> 
+    </div>
+
+
 							</article>
 
 							
@@ -500,7 +550,8 @@ figure(noise_resampled_5, "resampled_5")							    </code></pre>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script src="assets/js/gallery.js"></script>
+			<script src="assets/js/more.js"></script>
+
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
 			
 
