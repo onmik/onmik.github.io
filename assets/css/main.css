@@ -1,4 +1,4 @@
-@iimport url(fontawesome-all.min.css);
+@import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300italic,600italic,300,600");
 
 /*
@@ -259,7 +259,7 @@ input, select, textarea {
 	}
 
 
-
+	
 	.pred {
 	    font-size: 0.8rem;
 	    position: absolute;
@@ -282,7 +282,7 @@ input, select, textarea {
 	    left: 45%;
 	    font-size: 0.8rem;
 	}
-	
+
 	blockquote {
 		border-left: solid 4px #ffffff;
 		font-style: italic;
@@ -1213,12 +1213,9 @@ input, select, textarea {
 			-ms-transition-delay: 0.75s;
 			transition-delay: 0.75s;
 			background-image: linear-gradient(to top, rgba(19, 21, 25, 0.5), rgba(19, 21, 25, 0.5)), url("../../images/overlay.png");
-			background-size: auto,
- 256px 256px;
-			background-position: center,
- center;
-			background-repeat: no-repeat,
- repeat;
+			background-size: auto, 256px 256px;
+			background-position: center, center;
+			background-repeat: no-repeat, repeat;
 			z-index: 2;
 		}
 
