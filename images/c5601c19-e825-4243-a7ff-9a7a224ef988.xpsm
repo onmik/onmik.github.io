@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+********************************************************************
+PixInsight XML Process Serialization Module - XPSM 1.0
+********************************************************************
+Generated on 2021-10-02T23:14:58.837Z
+PixInsight Core 1.8.8-8 (x64)
+Copyright (c) 2003-2021 Pleiades Astrophoto
+********************************************************************
+-->
+<xpsm version="1.0" xmlns="http://www.pixinsight.com/xpsm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.pixinsight.com/xpsm http://pixinsight.com/xpsm/xpsm-1.0.xsd">
+   <instance class="PixelMath" id="GenHypStretchv1_instance">
+      <parameter id="expression">iif(b==0,EC=1,EC=0);
+iif(b&gt;0,Ds=D*b,Ds=D);
+iif(b&gt;0,bs=b,bs=1);
+iif(EC==1,q0=exp(-Ds*SP),q0=(1+Ds*SP)^(-1/bs));
+iif(EC==1,qWP=2-exp(-Ds*(HP-SP)),qWP=2-(1+Ds*(HP-SP))^(-1/bs));
+iif(EC==1,q1=2-2*exp(-Ds*(HP-SP))+exp(-Ds*(2*HP-SP-1)),q1=2-2*(1+Ds*(HP-SP))^(-1/bs)+(1+Ds*(2*HP-SP-1))^(-1/bs));
+iif($T&lt;SP,EC*exp(-Ds*(SP-$T))+(1-EC)*(1+Ds*(SP-$T))^(-1/bs)-q0,iif($T&gt;HP,2-EC*(2*exp(-Ds*(HP-SP))+exp(-Ds*(2*HP-$T-SP)))+(1-EC)*(2*(1+Ds*(HP-SP))^(-1/bs)+(1+Ds*(2*HP-$T-SP))^(-1/bs))-q0,2-EC*exp(-Ds*($T-SP))-(1-EC)*(1+Ds*($T-SP))^(-1/bs)-q0))/(q1-q0);</parameter>
+      <parameter id="expression1"></parameter>
+      <parameter id="expression2"></parameter>
+      <parameter id="expression3"></parameter>
+      <parameter id="useSingleExpression" value="true"/>
+      <parameter id="symbols">D  = 2;
+b  =0.2;
+SP =0.00;
+HP =1.00;
+Rnorm;
+q0;
+qWP;
+q1;
+Ds;
+bs;
+EC;</parameter>
+      <parameter id="clearImageCacheAndExit" value="false"/>
+      <parameter id="cacheGeneratedImages" value="false"/>
+      <parameter id="generateOutput" value="true"/>
+      <parameter id="singleThreaded" value="false"/>
+      <parameter id="optimization" value="true"/>
+      <parameter id="use64BitWorkingImage" value="false"/>
+      <parameter id="rescale" value="false"/>
+      <parameter id="rescaleLower" value="0"/>
+      <parameter id="rescaleUpper" value="1"/>
+      <parameter id="truncate" value="true"/>
+      <parameter id="truncateLower" value="0"/>
+      <parameter id="truncateUpper" value="1"/>
+      <parameter id="createNewImage" value="true"/>
+      <parameter id="showNewImage" value="true"/>
+      <parameter id="newImageId">ExpStretch200</parameter>
+      <parameter id="newImageWidth" value="0"/>
+      <parameter id="newImageHeight" value="0"/>
+      <parameter id="newImageAlpha" value="false"/>
+      <parameter id="newImageColorSpace" value="SameAsTarget"/>
+      <parameter id="newImageSampleFormat" value="SameAsTarget"/>
+      <table id="outputData" rows="0"/>
+   </instance>
+   <icon id="GenHypStretchv1" instance="GenHypStretchv1_instance" xpos="1632" ypos="888" workspace="Workspace05"/>
+</xpsm>
